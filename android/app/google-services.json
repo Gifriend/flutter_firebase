@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "558196251447",
+    "project_id": "karebay-mobile",
+    "storage_bucket": "karebay-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558196251447:android:13351ac40631e9c5d158b2",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558196251447-0qc9nsiitco9iee35g007e1aj9es356m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOWYNNo_1TdWvXxyzaWBpvHpzbSo7148E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558196251447-0qc9nsiitco9iee35g007e1aj9es356m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "558196251447-9o8k6smfa55std787s5sof0fmvvplr1d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.karebay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558196251447:android:9aa2803f5c72a867d158b2",
+        "android_client_info": {
+          "package_name": "com.example.karebay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558196251447-rdj3g4jovci8ifkedjrmr7808q85f48n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.karebay",
+            "certificate_hash": "eb57360352fcdbd45b0c46d0a047eee0898d4376"
+          }
+        },
+        {
+          "client_id": "558196251447-0qc9nsiitco9iee35g007e1aj9es356m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOWYNNo_1TdWvXxyzaWBpvHpzbSo7148E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558196251447-0qc9nsiitco9iee35g007e1aj9es356m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "558196251447-9o8k6smfa55std787s5sof0fmvvplr1d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.karebay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
