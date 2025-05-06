@@ -1,24 +1,27 @@
-import 'package:firebase/features/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../register/register_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../home/home_screen.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _LoginScreenState();
+  State<StatefulWidget> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _auth = FirebaseAuth.instance;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confriemPasswordController =
+      TextEditingController();
   bool isPasswordVisible = true;
-  bool showSpinner = false;
+  bool isPasswordVisible2 = true;
   String? email;
   String? password;
-
+  String? confirmPassword;
+  bool showSpinner = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -44,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const Text(
-                  'Welcome Back!',
+                  'Join With Us!',
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
                 ),
                 Padding(
@@ -55,10 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    controller: emailController,
                     onChanged: (value) {
                       email = value;
                     },
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: 'Email Address',
                       labelText: 'Email Address',
@@ -88,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20.0),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: passwordController,
                     obscureText: isPasswordVisible,
                     onChanged: (value) {
@@ -120,18 +123,91 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Kata Sandi tidak boleh kosong';
+                      }
+                      if (value.length < 8) {
+                        return 'Kata sandi harus minimal 8 karakter';
+                      }
+                      if (!RegExp(r'^(?=.*[A-Z])').hasMatch(value)) {
+                        return 'Kata sandiri minimal harus berisi huruf besar';
+                      }
+                      if (!RegExp(r'^(?=.*\d)').hasMatch(value)) {
+                        return 'Kata sandi minimal harus ada 1 simbol';
+                      }
+                      return null;
+                    },
                   ),
                 ),
-                const SizedBox(height: 40.0),
+                const SizedBox(height: 20.0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: TextFormField(
+                    controller: confriemPasswordController,
+                    obscureText: isPasswordVisible2,
+                    decoration: InputDecoration(
+                      hintText: 'Confirm Password',
+                      labelText: 'Confirm Password',
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible2 = !isPasswordVisible2;
+                          });
+                        },
+                        icon: Icon(
+                          isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Konfirmasi kata sandi harus diisi';
+                      }
+                      if (value != passwordController.text) {
+                        return 'Kata sandi tidak cocok';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('Already have account? '),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Text('Sing in'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 46.0),
                 GestureDetector(
                   onTap: () async {
+                    
                   },
                   child: Container(
                     height: 50.0,
                     width: 150.0,
                     child: Center(
                       child: Text(
-                        'Sign In',
+                        'Sign Up',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -140,37 +216,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
                   ),
-                ),
-                const SizedBox(height: 15.0),
-                const Text('Or continue with google account'),
-                const SizedBox(height: 20.0),
-                GestureDetector(
-                  onTap: () async {
-                    
-                  },
-                  child: Image.asset(
-                    'assets/img/signinwithgoogle.png',
-                    height: 60.0,
-                  ),
-                ),
-                const SizedBox(height: 15.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Don\'t have account? '),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(' Sign Up'),
-                    ),
-                  ],
                 ),
               ],
             ),
